@@ -114,7 +114,7 @@ script = ExtResource( 2 )
 position = Vector2( -6.92967, 1.96653 )
 frames = SubResource( 13 )
 animation = "run"
-frame = 2
+frame = 4
 playing = true
 flip_h = true
 
@@ -130,9 +130,9 @@ texture_scale = 0.1
 shadow_enabled = true
 
 [node name="Particles2D" type="Particles2D" parent="."]
-position = Vector2( -12.1912, 1.29374 )
+position = Vector2( -11.2319, 2.10904 )
 rotation = -1.309
-scale = Vector2( 5, 5 )
+scale = Vector2( 2, 2 )
 amount = 50
 local_coords = false
 process_material = SubResource( 21 )

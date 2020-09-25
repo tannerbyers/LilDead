@@ -174,5 +174,4 @@ energy = 0.3
 position = Vector2( -1, -13 )
 frames = SubResource( 26 )
 animation = "run_lantern"
-frame = 2
 playing = true
