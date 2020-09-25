@@ -7,28 +7,39 @@ const AIR_RESISTANCE = 0.01
 const GRAVITY = 300
 const JUMP_FORCE = 128
 
-var jumps_left = 1
+var jumps_left = 2
+var lantern_held = false
 
 var motion = Vector2.ZERO
+
+var life = 3
 
 onready var sprite = $AnimatedSprite
 
 func _physics_process(delta):
 	var x_input = Input.get_action_strength("right") - Input.get_action_strength("left")
 	
+	if Input.is_action_just_pressed("reset"):
+		get_tree().reload_current_scene()
 	
 	if x_input != 0:
-		sprite.play("run")
+		if lantern_held:
+			sprite.play("run_lantern")
+		else:
+			sprite.play("run")
 		motion.x += x_input * ACCELERATION * delta
 		motion.x = clamp(motion.x, -MAX_SPEED, MAX_SPEED)
 		sprite.flip_h = x_input < 0
 	else:
-		sprite.play("idle")
+		if lantern_held:
+			sprite.play("idle_lantern")
+		else:
+			sprite.play("idle")
 
 	motion.y += GRAVITY * delta
 	
 	if is_on_floor():
-		jumps_left = 1
+		jumps_left = 2
 		if x_input == 0:
 			motion.x = lerp(motion.x, 0, FRICTION)
 			
@@ -37,15 +48,9 @@ func _physics_process(delta):
 			jumps_left -= 1
 	else: 
 		if next_to_wall():
-			jumps_left = 1
-			if Input.is_action_just_pressed("up"):
+			if Input.is_action_just_pressed("up") and jumps_left > 0:
 				jumps_left -= 1
-				motion.y = -JUMP_FORCE
-				if next_to_left_wall():
-					motion.x += JUMP_FORCE
-
-				if next_to_right_wall():
-					motion.x -= JUMP_FORCE
+				motion.y = -JUMP_FORCE/2
 #
 		if Input.is_action_just_released("up") and motion.y < -JUMP_FORCE/2:
 			motion.y = -JUMP_FORCE/2
@@ -63,3 +68,10 @@ func next_to_right_wall():
 	
 func next_to_left_wall():
 	return $LeftRayCast2D.is_colliding() or $LeftRayCast2D2.is_colliding()
+
+func hit():
+	print("hit received")
+	life -= 1
+	
+	if life <= 0:
+		get_tree().reload_current_scene()
