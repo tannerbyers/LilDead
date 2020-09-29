@@ -29,6 +29,7 @@ func _input(event):
 				# Play attack animation
 				attack_playing = true
 				sprite.play("attack")
+				is_hitting_enemy()
 				# Add cooldown time to current time
 				next_attack_time = now + attack_cooldown_time
 		
@@ -98,3 +99,6 @@ func hit():
 func _on_AnimatedSprite_animation_finished():
 	attack_playing = false;
 	sprite.stop()
+	
+func is_hitting_enemy():
+	print("attacking")

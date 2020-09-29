@@ -65,10 +65,6 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="CapsuleShape2D" id=14]
-radius = 6.0
-height = 0.0
-
 [sub_resource type="Gradient" id=15]
 offsets = PoolRealArray( 0, 0.376623, 0.727273, 1 )
 colors = PoolColorArray( 0.0199127, 0.43514, 0.509766, 1, 0, 0.517857, 0.511788, 1, 0, 1, 0.988281, 1, 1, 1, 1, 1 )
@@ -107,6 +103,10 @@ scale_curve = SubResource( 20 )
 color_ramp = SubResource( 16 )
 hue_variation = 1.0
 
+[sub_resource type="CapsuleShape2D" id=22]
+radius = 3.55956
+height = 10.2944
+
 [node name="Kisume" type="KinematicBody2D"]
 script = ExtResource( 2 )
 
@@ -114,16 +114,12 @@ script = ExtResource( 2 )
 position = Vector2( -6.92967, 1.96653 )
 frames = SubResource( 13 )
 animation = "run"
-frame = 5
+frame = 3
 playing = true
 flip_h = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -7.81929, 1.45148 )
-shape = SubResource( 14 )
-
 [node name="Light2D" type="Light2D" parent="."]
-position = Vector2( -7.94645, 1.9159 )
+position = Vector2( -8.16779, 1.9159 )
 rotation = -0.261799
 texture = ExtResource( 3 )
 texture_scale = 0.1
@@ -136,3 +132,8 @@ scale = Vector2( 2, 2 )
 amount = 50
 local_coords = false
 process_material = SubResource( 21 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -7.71701, 1.88988 )
+rotation = 1.5708
+shape = SubResource( 22 )

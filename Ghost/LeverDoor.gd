@@ -1,7 +1,6 @@
 extends StaticBody2D
 
 var pressurePadPressed = false
-onready var leverNode = get_node("../Lever")
 
 func _ready():
 	print("door loaded")
@@ -11,7 +10,7 @@ func _ready():
 func pressurePadStepped (): 
 	print("pressurepad stepped")
 	pressurePadPressed = true
-	$AnimatedSprite.play("default")
+	$AnimatedSprite.play("open")
 
 
 func _on_AnimatedSprite_animation_finished():
@@ -22,7 +21,7 @@ func _on_AnimatedSprite_animation_finished():
 		$AnimatedSprite.stop()
 	else:
 		print("animation finished")
-		$AnimatedSprite.play("load")
+		$AnimatedSprite.play("open")
 		$AnimatedSprite.stop()
 		$CollisionShape2D.disabled = false
 	
@@ -33,9 +32,9 @@ func timesUp():
 
 
 func _on_Lever_body_entered(body):
+	print(body)
 	if body.is_in_group("kisume"):
-		print(leverNode)
-		#leverNode.flip_switch()
+		$Lever.flip_switch()
 		pressurePadStepped()
 		
 		

@@ -1,16 +1,63 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Pressure_plate.png" type="Texture" id=1]
+[ext_resource path="res://Lever.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 5.79267, 5.81267 )
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 32, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=5]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 32, 0, 16, 16 )
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [  ],
+"frames": [ SubResource( 2 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
+}, {
+"frames": [ SubResource( 7 ) ],
+"loop": true,
+"name": "on",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
+"loop": true,
+"name": "switch",
+"speed": 5.0
 } ]
 
-[node name="Lever" type="RigidBody2D"]
+[node name="Lever" type="Area2D"]
+script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -0.707104, -2.2981 )
+shape = SubResource( 6 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0, 0.176777 )
 frames = SubResource( 1 )
+animation = "on"
+[connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
