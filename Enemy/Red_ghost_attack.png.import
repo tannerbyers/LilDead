@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Master_Sprite3_-_4_tanner.png-5ca45de28cfbe7483f8629f0c339decc.stex"
+path="res://.import/Red_ghost_attack.png-cc2933e91bdfe11803372307e07d63c9.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Master_Sprite3_-_4_tanner.png"
-dest_files=[ "res://.import/Master_Sprite3_-_4_tanner.png-5ca45de28cfbe7483f8629f0c339decc.stex" ]
+source_file="res://Enemy/Red_ghost_attack.png"
+dest_files=[ "res://.import/Red_ghost_attack.png-cc2933e91bdfe11803372307e07d63c9.stex" ]
 
 [params]
 

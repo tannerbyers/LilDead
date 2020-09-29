@@ -9,3 +9,4 @@ func _on_Area2D_body_entered(body):
 		ghostNode.lantern_held = true
 		print("lantern colidded by player")
 		$AnimatedSprite.visible = false
+		$Light2D.visible = false

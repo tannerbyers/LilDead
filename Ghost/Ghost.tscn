@@ -107,14 +107,14 @@ scale_curve = SubResource( 20 )
 color_ramp = SubResource( 16 )
 hue_variation = 1.0
 
-[node name="Ghost" type="KinematicBody2D"]
+[node name="Kisume" type="KinematicBody2D"]
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( -6.92967, 1.96653 )
 frames = SubResource( 13 )
 animation = "run"
-frame = 4
+frame = 5
 playing = true
 flip_h = true
 

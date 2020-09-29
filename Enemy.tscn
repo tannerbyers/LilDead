@@ -1,45 +1,71 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=19 format=2]
 
-[ext_resource path="res://Master_Sprite3_-_4_tanner.png" type="Texture" id=1]
+[ext_resource path="res://Enemy/Red_Ghost.png" type="Texture" id=1]
 [ext_resource path="res://Enemy.gd" type="Script" id=2]
 [ext_resource path="res://Misc/light.png" type="Texture" id=3]
+[ext_resource path="res://Enemy/Red_ghost_attack.png" type="Texture" id=4]
 
-[sub_resource type="AtlasTexture" id=7]
+[sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
-region = Rect2( 80, 48, 16, 16 )
+region = Rect2( 0, 0, 16, 32 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 1 )
+region = Rect2( 16, 0, 16, 32 )
 
 [sub_resource type="AtlasTexture" id=8]
-atlas = ExtResource( 1 )
-region = Rect2( 96, 48, 16, 16 )
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=9]
-atlas = ExtResource( 1 )
-region = Rect2( 112, 48, 16, 16 )
+atlas = ExtResource( 4 )
+region = Rect2( 32, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=10]
-atlas = ExtResource( 1 )
-region = Rect2( 128, 48, 16, 16 )
+atlas = ExtResource( 4 )
+region = Rect2( 64, 0, 32, 32 )
 
-[sub_resource type="SpriteFrames" id=5]
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 4 )
+region = Rect2( 96, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 4 )
+region = Rect2( 128, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 4 )
+region = Rect2( 160, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 4 )
+region = Rect2( 192, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=3]
 animations = [ {
-"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
+"frames": [ SubResource( 1 ), SubResource( 2 ) ],
 "loop": true,
 "name": "walking",
 "speed": 5.0
+}, {
+"frames": [ SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ) ],
+"loop": true,
+"name": "attack",
+"speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 5.1108, 6.06157 )
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 5.91908, 11.6016 )
 
-[sub_resource type="Curve" id=11]
+[sub_resource type="Curve" id=5]
 min_value = -200.0
 max_value = 200.0
 _data = [ Vector2( 0.0126582, -176.818 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=12]
-curve = SubResource( 11 )
+[sub_resource type="CurveTexture" id=6]
+curve = SubResource( 5 )
 
-[sub_resource type="ParticlesMaterial" id=13]
+[sub_resource type="ParticlesMaterial" id=7]
 emission_shape = 1
 emission_sphere_radius = 1.0
 flag_disable_z = true
@@ -47,7 +73,7 @@ gravity = Vector3( 0, -100, 0 )
 initial_velocity = 20.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-radial_accel_curve = SubResource( 12 )
+radial_accel_curve = SubResource( 6 )
 color = Color( 0.92549, 0.309804, 0.309804, 1 )
 
 [node name="Enemy" type="KinematicBody2D"]
@@ -58,29 +84,29 @@ script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( -1.32553, -0.819788 )
-frames = SubResource( 5 )
-animation = "walking"
+frames = SubResource( 3 )
+animation = "attack"
 frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0.445015, 2.34471 )
-shape = SubResource( 6 )
+position = Vector2( -1.90718, 1.73016 )
+shape = SubResource( 4 )
 
 [node name="TopRayCast" type="RayCast2D" parent="."]
-position = Vector2( -0.173281, -6.09092 )
+position = Vector2( -1.84834, -10.8383 )
 rotation = 3.14159
 enabled = true
 cast_to = Vector2( 0, 1 )
 
 [node name="LeftRayCast" type="RayCast2D" parent="."]
-position = Vector2( -5.95607, 0.533636 )
+position = Vector2( -8.75026, 1.42534 )
 rotation = 1.5708
 enabled = true
 cast_to = Vector2( 0, 1 )
 
 [node name="RightRayCast" type="RayCast2D" parent="."]
-position = Vector2( 5.7371, 1.57876 )
+position = Vector2( 4.69573, 0.941327 )
 rotation = 4.71239
 enabled = true
 cast_to = Vector2( 0, 1 )
@@ -96,5 +122,5 @@ energy = 0.5
 
 [node name="Particles2D" type="Particles2D" parent="."]
 position = Vector2( -1.94943, 7.67165 )
-process_material = SubResource( 13 )
+process_material = SubResource( 7 )
 [connection signal="timeout" from="AttackTimer" to="." method="_on_AttackTimer_timeout"]

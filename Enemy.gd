@@ -7,6 +7,7 @@ const UP = Vector2(0,-1)
 onready var playerNode =  get_node("../Player")
 onready var attackTimer = $AttackTimer
 var attackReady = true
+var health = 3
 
 var velocity = Vector2.ZERO
 onready var leftRaycast = $LeftRayCast
@@ -36,22 +37,31 @@ func _physics_process(delta):
 	if rightRaycast.is_colliding():
 		var coll = rightRaycast.get_collider()
 		if coll.name == "Player" and attackReady:
-			print("hit")
+			$AnimatedSprite.play("attack")
 			attackReady = false
 			attackTimer.start()
 			coll.hit()
-	if topRaycast.is_colliding():
+	elif topRaycast.is_colliding():
 		var coll = topRaycast.get_collider()
 		if coll.name == "Player" and attackReady:
-			print("hit")
+			$AnimatedSprite.play("attack")
 			attackReady = false
 			attackTimer.start()
 			coll.hit()
-	
+	else:
+		if attackReady:
+			$AnimatedSprite.play("walking")
+		else:
+			pass
+			
 	if is_on_wall():
 		direction = direction * -1
 		$AnimatedSprite.flip_h = direction > 0
 
-
+func hit(damage):
+	health -= 1
+	if health <= 0:
+		queue_free()
+		
 func _on_AttackTimer_timeout():
 	attackReady = true
