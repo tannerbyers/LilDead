@@ -13,59 +13,59 @@ region = Rect2( 0, 0, 16, 32 )
 atlas = ExtResource( 1 )
 region = Rect2( 16, 0, 16, 32 )
 
-[sub_resource type="AtlasTexture" id=8]
+[sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 4 )
 region = Rect2( 0, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=9]
+[sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 4 )
 region = Rect2( 32, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=10]
+[sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 4 )
 region = Rect2( 64, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=11]
+[sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 4 )
 region = Rect2( 96, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=12]
+[sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 4 )
 region = Rect2( 128, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=13]
+[sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 4 )
 region = Rect2( 160, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=14]
+[sub_resource type="AtlasTexture" id=9]
 atlas = ExtResource( 4 )
 region = Rect2( 192, 0, 32, 32 )
 
-[sub_resource type="SpriteFrames" id=3]
+[sub_resource type="SpriteFrames" id=10]
 animations = [ {
 "frames": [ SubResource( 1 ), SubResource( 2 ) ],
 "loop": true,
 "name": "walking",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ) ],
+"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
 "loop": true,
 "name": "attack",
 "speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=11]
 extents = Vector2( 5.91908, 11.6016 )
 
-[sub_resource type="Curve" id=5]
+[sub_resource type="Curve" id=12]
 min_value = -200.0
 max_value = 200.0
 _data = [ Vector2( 0.0126582, -176.818 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=6]
-curve = SubResource( 5 )
+[sub_resource type="CurveTexture" id=13]
+curve = SubResource( 12 )
 
-[sub_resource type="ParticlesMaterial" id=7]
+[sub_resource type="ParticlesMaterial" id=14]
 emission_shape = 1
 emission_sphere_radius = 1.0
 flag_disable_z = true
@@ -73,7 +73,7 @@ gravity = Vector3( 0, -100, 0 )
 initial_velocity = 20.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-radial_accel_curve = SubResource( 6 )
+radial_accel_curve = SubResource( 13 )
 color = Color( 0.92549, 0.309804, 0.309804, 1 )
 
 [node name="Enemy" type="KinematicBody2D"]
@@ -84,14 +84,14 @@ script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( -1.32553, -0.819788 )
-frames = SubResource( 3 )
+frames = SubResource( 10 )
 animation = "attack"
-frame = 5
+frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -1.90718, 1.73016 )
-shape = SubResource( 4 )
+shape = SubResource( 11 )
 
 [node name="TopRayCast" type="RayCast2D" parent="."]
 position = Vector2( -1.84834, -10.8383 )
@@ -122,5 +122,5 @@ energy = 0.5
 
 [node name="Particles2D" type="Particles2D" parent="."]
 position = Vector2( -1.94943, 7.67165 )
-process_material = SubResource( 7 )
+process_material = SubResource( 14 )
 [connection signal="timeout" from="AttackTimer" to="." method="_on_AttackTimer_timeout"]

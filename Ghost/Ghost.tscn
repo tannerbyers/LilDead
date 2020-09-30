@@ -65,28 +65,28 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="Gradient" id=15]
+[sub_resource type="Gradient" id=14]
 offsets = PoolRealArray( 0, 0.376623, 0.727273, 1 )
 colors = PoolColorArray( 0.0199127, 0.43514, 0.509766, 1, 0, 0.517857, 0.511788, 1, 0, 1, 0.988281, 1, 1, 1, 1, 1 )
 
-[sub_resource type="GradientTexture" id=16]
-gradient = SubResource( 15 )
+[sub_resource type="GradientTexture" id=15]
+gradient = SubResource( 14 )
 
-[sub_resource type="Curve" id=17]
+[sub_resource type="Curve" id=16]
 min_value = -200.0
 max_value = 200.0
 _data = [ Vector2( 0, -74.5454 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=18]
-curve = SubResource( 17 )
+[sub_resource type="CurveTexture" id=17]
+curve = SubResource( 16 )
 
-[sub_resource type="Curve" id=19]
+[sub_resource type="Curve" id=18]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.343182 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=20]
-curve = SubResource( 19 )
+[sub_resource type="CurveTexture" id=19]
+curve = SubResource( 18 )
 
-[sub_resource type="ParticlesMaterial" id=21]
+[sub_resource type="ParticlesMaterial" id=20]
 lifetime_randomness = 1.0
 emission_shape = 1
 emission_sphere_radius = 1.0
@@ -97,15 +97,15 @@ angular_velocity = 350.0
 angular_velocity_random = 1.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-linear_accel_curve = SubResource( 18 )
+linear_accel_curve = SubResource( 17 )
 scale = 3.0
-scale_curve = SubResource( 20 )
-color_ramp = SubResource( 16 )
+scale_curve = SubResource( 19 )
+color_ramp = SubResource( 15 )
 hue_variation = 1.0
 
-[sub_resource type="CapsuleShape2D" id=22]
-radius = 3.55956
-height = 10.2944
+[sub_resource type="CapsuleShape2D" id=21]
+radius = 2.06126
+height = 7.6726
 
 [node name="Kisume" type="KinematicBody2D"]
 script = ExtResource( 2 )
@@ -114,7 +114,7 @@ script = ExtResource( 2 )
 position = Vector2( -6.92967, 1.96653 )
 frames = SubResource( 13 )
 animation = "run"
-frame = 3
+frame = 1
 playing = true
 flip_h = true
 
@@ -131,9 +131,9 @@ rotation = -1.309
 scale = Vector2( 2, 2 )
 amount = 50
 local_coords = false
-process_material = SubResource( 21 )
+process_material = SubResource( 20 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -7.71701, 1.88988 )
+position = Vector2( -8.18523, 1.14072 )
 rotation = 1.5708
-shape = SubResource( 22 )
+shape = SubResource( 21 )
