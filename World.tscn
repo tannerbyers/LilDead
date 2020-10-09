@@ -1192,7 +1192,7 @@ z_index = 100
 color = Color( 0, 0, 0, 0.937255 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 978.759, 306.148 )
+position = Vector2( 1234.68, 296.046 )
 z_index = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Player"]
@@ -1243,15 +1243,6 @@ position = Vector2( 479.573, 192.388 )
 
 [node name="EnemyGhost" parent="." instance=ExtResource( 2 )]
 position = Vector2( 784, 368 )
-
-[node name="EnemyGhost3" parent="." instance=ExtResource( 2 )]
-position = Vector2( 1264, 296 )
-
-[node name="EnemyGhost4" parent="." instance=ExtResource( 2 )]
-position = Vector2( 1112, 296 )
-
-[node name="EnemyGhost5" parent="." instance=ExtResource( 2 )]
-position = Vector2( 1184, 296 )
 
 [node name="EnemyGhost2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 640, 368 )

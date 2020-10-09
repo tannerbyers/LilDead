@@ -1,11 +1,11 @@
-extends Area2D
+extends Control
 
 
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
 
-
+var beam = load("res://Beam.bmp")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -16,6 +16,9 @@ func _ready():
 #	pass
 
 
-func _on_TheEnd_body_entered(body):
-	if body.is_in_group("player"):
-			get_tree().change_scene("res://EndScreen.tscn")
+func _on_Button_pressed():
+	OS.shell_open("https://deadsprite.itch.io/")
+
+
+func _on_Button_mouse_entered():
+	Input.set_custom_mouse_cursor(beam, Input.CURSOR_IBEAM)
