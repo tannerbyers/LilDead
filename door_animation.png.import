@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/character sprite v2 master.png-7fb37f814ba61cd99f0ff57e5ccbeca0.stex"
+path="res://.import/door_animation.png-36d572a91a57da324223508e777ceb5d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Player/character sprite v2 master.png"
-dest_files=[ "res://.import/character sprite v2 master.png-7fb37f814ba61cd99f0ff57e5ccbeca0.stex" ]
+source_file="res://door_animation.png"
+dest_files=[ "res://.import/door_animation.png-36d572a91a57da324223508e777ceb5d.stex" ]
 
 [params]
 
