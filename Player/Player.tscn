@@ -239,6 +239,6 @@ texture = ExtResource( 3 )
 position = Vector2( -1, -13 )
 frames = SubResource( 38 )
 animation = "attack"
-frame = 5
+frame = 7
 playing = true
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]

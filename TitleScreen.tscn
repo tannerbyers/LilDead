@@ -4,7 +4,8 @@
 [ext_resource path="res://Menu.gd" type="Script" id=3]
 
 [sub_resource type="StreamTexture" id=1]
-load_path = "res://.import/Lil dead title final.png-b939e984683c4a9564bcb686ae10fed5.stex"
+flags = 4
+load_path = "res://.import/Lil dead title directions.png-b384203297bc0f0bfb12eb3c9e52d5c0.stex"
 
 [node name="TitleScreen" type="Control"]
 anchor_right = 1.0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/lil_dead_demo.ogg-3a8f4ccf48afd82f87a6dbde80115a45.oggstr"
+
+[deps]
+
+source_file="res://lil_dead_demo.ogg"
+dest_files=[ "res://.import/lil_dead_demo.ogg-3a8f4ccf48afd82f87a6dbde80115a45.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
