@@ -5,9 +5,9 @@ const SPEED = 30
 const UP = Vector2(0,-1)
 
 onready var playerNode =  get_node("../Player")
-onready var attackTimer = $AttackTimer
-var attackReady = true
+var isAttacking = false
 var health = 3
+var playerSeen = false
 
 var velocity = Vector2.ZERO
 onready var leftRaycast = $LeftRayCast
@@ -21,47 +21,66 @@ func _ready():
 	pass # Replace with function body.
 
 func _physics_process(delta):
-	velocity.x = SPEED * direction
-	velocity.y += GRAVITY
-
-	velocity = move_and_slide(velocity, UP)
-	
 	if leftRaycast.is_colliding():
-		var coll = leftRaycast.get_collider()
-		if coll.name == "Player" and attackReady:
-			print("hit")
-			attackReady = false
-			attackTimer.start()
-			coll.hit()
-			
-	if rightRaycast.is_colliding():
-		var coll = rightRaycast.get_collider()
-		if coll.name == "Player" and attackReady:
-			$AnimatedSprite.play("attack")
-			attackReady = false
-			attackTimer.start()
-			coll.hit()
-	elif topRaycast.is_colliding():
-		var coll = topRaycast.get_collider()
-		if coll.name == "Player" and attackReady:
-			$AnimatedSprite.play("attack")
-			attackReady = false
-			attackTimer.start()
-			coll.hit()
+		var leftcoll = leftRaycast.get_collider()
+		if leftcoll:
+			if leftcoll.name == "Player":
+				print("attacking player")
+				isAttacking = true
+				$AnimatedSprite.play("attack")
+				$AttackArea/AttackCollision.disabled = false
+				$AttackArea/AttackCollision2.disabled = false
+			else:
+				direction = direction * -1
+				$AnimatedSprite.flip_h = direction > 0
+	elif rightRaycast.is_colliding():
+		var rightcoll = rightRaycast.get_collider()
+		if rightcoll:
+			if rightcoll.name == "Player":
+				print("attacking player")
+				isAttacking = true
+				$AnimatedSprite.play("attack")
+				$AttackArea/AttackCollision.disabled = false
+				$AttackArea/AttackCollision2.disabled = false
+			else:
+				direction = direction * -1
+				$AnimatedSprite.flip_h = direction > 0
 	else:
-		if attackReady:
+		if !isAttacking:
 			$AnimatedSprite.play("walking")
-		else:
-			pass
+	
+	if playerSeen:
+		velocity = position.direction_to(playerNode.position) * SPEED * 2
+		$AnimatedSprite.flip_h = velocity.x >= 0
 			
-	if is_on_wall():
-		direction = direction * -1
-		$AnimatedSprite.flip_h = direction > 0
+	else: 
+		velocity.x = SPEED * direction
+		velocity.y += GRAVITY	
+		$AnimatedSprite.flip_h = velocity.x >= 0
+	velocity = move_and_slide(velocity, UP)
 
 func hit(damage):
 	health -= 1
 	if health <= 0:
 		queue_free()
-		
-func _on_AttackTimer_timeout():
-	attackReady = true
+
+
+func _on_AnimatedSprite_animation_finished():
+	if $AnimatedSprite.animation == "attack":
+		$AttackArea/AttackCollision.disabled = true
+		$AttackArea/AttackCollision2.disabled = true
+		isAttacking = false
+
+
+func _on_AttackArea_body_entered(body):
+	if body.is_in_group("player"):
+		playerNode.hit()
+
+
+func _on_Area2D_body_entered(body):
+	if body.is_in_group("player"):
+		playerSeen = true
+
+func _on_Area2D_body_exited(body):
+	if body.is_in_group("player"):
+		playerSeen = false
